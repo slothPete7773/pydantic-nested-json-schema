@@ -2,6 +2,7 @@ import uuid
 from datetime import date, datetime, timedelta
 from pydantic import BaseModel, confloat, validator
 from enum import Enum
+from typing import Literal
 
 
 # define an Enum of acceptable Department values
@@ -15,7 +16,7 @@ class Module(BaseModel):
     id: int | uuid.UUID
     name: str
     professor: str
-    credits: int
+    credits: Literal[10, 20]
     registration_code: str
 
 
