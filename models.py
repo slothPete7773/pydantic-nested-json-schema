@@ -30,6 +30,12 @@ class Student(BaseModel):
     fees_paid: bool
     modules: list[Module] = []
 
+    @validator("modules")
+    def validate_module_length(cls, value):
+        if len(value) and len(value) != 3:
+            raise ValueError("List of modules should have length 3")
+        return value
+
     @validator("date_of_birth")
     def ensure_16_or_over(cls, value):
         sixteen_years_ago = datetime.now() - timedelta(days=365 * 16)
